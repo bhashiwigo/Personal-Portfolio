@@ -52,30 +52,6 @@
   };
 })();
 
-
-/* THEME TOGGLE */
-const themeBtn = document.getElementById('theme-toggle');
-const body = document.body;
-
-function applyTheme(isDark) {
-  if (isDark) {
-    body.classList.add('dark-mode');
-    body.classList.remove('light-mode');
-    themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
-  } else {
-    body.classList.add('light-mode');
-    body.classList.remove('dark-mode');
-    themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
-  }
-  if (window._restartRain) window._restartRain();
-}
-
-themeBtn.addEventListener('click', () => {
-  const isDark = body.classList.contains('dark-mode');
-  applyTheme(!isDark);
-  localStorage.setItem('theme', isDark ? 'light' : 'dark');
-});
-
 /* Restore preference */
 const saved = localStorage.getItem('theme');
 if (saved === 'light') applyTheme(false);
@@ -109,25 +85,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
-
-document.querySelectorAll('.glass-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    card.style.transform = `
-      rotateX(${-(y - rect.height / 2) / 20}deg)
-      rotateY(${(x - rect.width / 2) / 20}deg)
-    `;
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'rotateX(0) rotateY(0)';
-  });
-});
-
 
 /* SKILL BARS ANIMATE ON SCROLL */
 function animateBars(entries, observer) {
@@ -295,4 +252,4 @@ window.addEventListener('scroll', () => {
       img.src = `https://ui-avatars.com/api/?name=BW&background=020611&color=00f5ff&size=400&font-size=0.4&bold=true`;
     });
   }
-});
+});                                                                                                    
